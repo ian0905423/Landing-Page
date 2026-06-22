@@ -1,0 +1,1358 @@
+/* ============================================================
+   SUPLIDORA MOSS — styles.css
+   Basado en moss-design skill v1.0
+   Curso ISW-521 | Laboratorio #1
+   Fase 2: CSS Base + Variables (tokens, reset, tipografía global)
+   ============================================================ */
+
+/* ── Importación de Fuentes (Google Fonts) ── */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+
+/* ============================================================
+   1. DESIGN TOKENS (Custom Properties)
+   Fuente: agent/skills/moss-design/references/tokens.md
+   ============================================================ */
+:root {
+  /* ── Colores Primarios ── */
+  --color-primary:        #D81B7A;   /* fucsia principal — botones, acentos */
+  --color-primary-dark:   #AD1457;   /* hover de botones y links */
+  --color-primary-light:  #F8BBD9;   /* fondos de cards, badges sutiles */
+  --color-primary-xlight: #FDE8F3;   /* fondos de secciones hero, hover suave */
+
+  /* ── Colores Neutros ── */
+  --color-black:          #111111;   /* sección dark (beneficios) */
+  --color-dark:           #1A1A1A;   /* texto principal */
+  --color-gray-dark:      #444444;   /* texto secundario fuerte */
+  --color-gray:           #666666;   /* texto descriptivo */
+  --color-gray-light:     #999999;   /* placeholders, texto terciario */
+  --color-border:         #E8E8E8;   /* bordes de cards, separadores */
+  --color-bg:             #FFFFFF;   /* fondo base — blanco puro */
+  --color-bg-section:     #FDF5F9;   /* fondo alternativo de secciones */
+  --color-bg-contact:     #f5f5f7;   /* fondo de sección contacto */
+  --color-input-bg:       #FFFFFF;   /* fondo de inputs */
+  --color-bg-commitments: #FFFFFF;
+  --color-bg-benefits:    #FDF5F9;
+  --color-text-inverted-title: var(--color-dark);
+  --color-text-inverted-desc: var(--color-gray);
+  --color-border-commitments: rgba(0, 0, 0, 0.12);
+
+  /* ── Acento Dorado (uso muy puntual) ── */
+  --color-gold:           #C9A84C;   /* ícono de oferta, badge especial */
+  --color-gold-light:     #F5EDD0;   /* fondo del badge de oferta */
+
+  /* ── Texto sobre Fondos Oscuros ── */
+  --color-text-on-dark:   #FFFFFF;
+  --color-text-muted-dark:#CCCCCC;
+
+  /* ── Tipografía ── */
+  --font-heading: 'Montserrat', 'Poppins', sans-serif;
+  --font-body:    'Poppins', sans-serif;
+
+  /* Tamaños de fuente — clamp() para escalado fluido */
+  --fs-hero-title:    clamp(2rem, 4vw, 3rem);      /* "Realza tu belleza..." */
+  --fs-section-title: clamp(1.5rem, 2.5vw, 2rem);  /* "Nuestras Categorías" */
+  --fs-card-title:    1.1rem;
+  --fs-body:          0.95rem;
+  --fs-small:         0.85rem;
+  --fs-nav:           0.95rem;
+
+  /* Pesos tipográficos */
+  --fw-regular: 400;
+  --fw-medium:  500;
+  --fw-semibold:600;
+  --fw-bold:    700;
+  --fw-black:   800;
+
+  /* ── Espaciado — escala de 8px ── */
+  --space-xs:  0.5rem;   /*  8px */
+  --space-sm:  1rem;     /* 16px */
+  --space-md:  1.5rem;   /* 24px */
+  --space-lg:  2rem;     /* 32px */
+  --space-xl:  3rem;     /* 48px */
+  --space-2xl: 5rem;     /* 80px */
+
+  /* ── Bordes ── */
+  --radius-sm:  8px;
+  --radius-md:  12px;
+  --radius-lg:  16px;
+  --radius-pill:50px;
+
+  /* ── Sombras ── */
+  --shadow-card:  0 4px 15px rgba(0, 0, 0, 0.08);
+  --shadow-hover: 0 10px 30px rgba(216, 27, 122, 0.15);
+  --shadow-btn:   0 4px 12px rgba(216, 27, 122, 0.35);
+
+  /* ── Transiciones ── */
+  --transition-fast: 200ms ease;
+  --transition-base: 300ms ease;
+  --transition-slow: 500ms ease;
+
+  /* ── Layout ── */
+  --container-max: 1200px;
+  --container-pad: 1.5rem;
+  --nav-height:    110px; /* Aumentado para acomodar el logo aún más grande */
+}
+
+/* ── Modo Oscuro (activado via localStorage + JS en Fase 6) ── */
+body.dark-mode {
+  --color-bg:           #0F0F0F;
+  --color-bg-section:   #1A1A1A;
+  --color-bg-contact:   #151515;
+  --color-input-bg:     #1E1E1E;
+  --color-bg-commitments: #1a1a1a;
+  --color-bg-benefits:    #111111;
+  --color-text-inverted-title: var(--color-text-on-dark);
+  --color-text-inverted-desc: var(--color-text-muted-dark);
+  --color-border-commitments: rgba(255, 255, 255, 0.12);
+  --color-dark:         #F0F0F0;
+  --color-gray-dark:    #CCCCCC;
+  --color-gray:         #AAAAAA;
+  --color-border:       #333333;
+  --color-text-on-dark: #F0F0F0;
+
+  /* El fucsia se mantiene igual — es la marca */
+  --color-primary:      #E91E8C;   /* ligeramente más brillante en dark */
+}
+
+
+/* Oscurecer el mapa de Google en modo oscuro */
+body.dark-mode .contact-form-wrapper iframe {
+  filter: invert(90%) hue-rotate(180deg) brightness(95%) contrast(85%);
+}
+
+
+/* ============================================================
+   2. RESET MÍNIMO
+   Fuente: agent/skills/moss-design/references/layout.md
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  background-color: var(--color-bg);
+  color: var(--color-dark);
+  line-height: 1.6;
+  /* Transición suave al cambiar tema (dark-mode) */
+  transition: background-color var(--transition-base), color var(--transition-base);
+}
+
+img { max-width: 100%; display: block; }
+ul  { list-style: none; }
+a   { color: inherit; }
+
+/* Foco visible accesible (RA-05: navegación por teclado) */
+:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+
+/* ============================================================
+   3. CONTENEDOR BASE
+   ============================================================ */
+.container {
+  width: 100%;
+  max-width: var(--container-max); /* 1200px */
+  margin: 0 auto;
+  padding: 0 var(--container-pad);
+}
+
+
+/* ============================================================
+   4. SECCIONES — Espaciado y Fondos
+   ============================================================ */
+.section       { padding: var(--space-xl) 0; }
+.section--alt  { background-color: var(--color-bg-section); }
+.section--dark { background-color: var(--color-bg-benefits); color: var(--color-text-inverted-desc); }
+
+
+/* ============================================================
+   5. TÍTULOS DE SECCIÓN
+   ============================================================ */
+.section-title {
+  font-family: var(--font-heading);
+  font-size: var(--fs-section-title);
+  font-weight: var(--fw-bold);
+  color: var(--color-primary);
+  margin: 0 0 var(--space-lg);
+}
+
+/* Variante centrada con líneas decorativas */
+.section-title--centered {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+}
+.section-title--centered::before,
+.section-title--centered::after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  background: var(--color-primary);
+  opacity: 0.3;
+}
+
+
+/* ============================================================
+   6. NAVBAR — Flexbox (RT-03)
+   ============================================================ */
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--color-black); /* Fondo negro requerido */
+  height: var(--nav-height);
+}
+
+/* Flex: logo — links — toggle en una fila */
+.navbar__inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+/* Logo: forzar dimensiones para que no colapse con el reset img { display:block } */
+.navbar__logo {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  text-decoration: none;
+}
+.navbar__logo img {
+  width: auto;
+  height: 90px;          /* Logo mucho más grande */
+  max-width: 250px;      /* Permitir que sea más ancho si es necesario */
+  display: inline-block; /* sobreescribe el display:block del reset */
+  object-fit: contain;
+  /* Se eliminó el filtro para mantener el color blanco original del archivo PNG */
+}
+
+.navbar__links { display: flex; gap: var(--space-md); }
+
+.navbar__link {
+  font-size: var(--fs-nav);
+  font-weight: var(--fw-medium);
+  color: var(--color-text-on-dark); /* Texto blanco para contrastar con fondo negro */
+  text-decoration: none;
+  padding-bottom: 3px;
+  border-bottom: 2px solid transparent;
+  transition: color var(--transition-fast), border-color var(--transition-fast);
+}
+.navbar__link:hover,
+.navbar__link--active {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+}
+
+.navbar__actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.navbar__catalog-btn {
+  background: transparent;
+  border: none;
+  width: auto;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform var(--transition-fast);
+  padding: 0;
+}
+.navbar__catalog-btn img {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+}
+.navbar__catalog-btn:hover {
+  transform: scale(1.05);
+}
+
+/* ── Toggle Switch Modo Oscuro ─────────────────────────────── */
+.navbar__dark-toggle-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+/* Ocultar el checkbox nativo sin perder accesibilidad */
+.dark-toggle__input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+
+/* La "pista" del interruptor */
+.dark-toggle__label {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  width: 52px;
+  height: 28px;
+  background-color: var(--color-gray-light);
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+  flex-shrink: 0;
+}
+
+/* El "pulgar" del interruptor */
+.dark-toggle__thumb {
+  position: absolute;
+  left: 4px;
+  width: 20px;
+  height: 20px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+  transition: transform var(--transition-fast), background-color var(--transition-fast);
+}
+
+/* Estado activo (modo oscuro ON) */
+.dark-toggle__input:checked + .dark-toggle__label {
+  background-color: var(--color-primary);
+}
+.dark-toggle__input:checked + .dark-toggle__label .dark-toggle__thumb {
+  transform: translateX(24px);
+}
+
+/* Foco visible accesible para navegación por teclado */
+.dark-toggle__input:focus-visible + .dark-toggle__label {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 3px;
+  border-radius: var(--radius-pill);
+}
+
+/* En móvil se ocultan los links (Fase 5) */
+@media (max-width: 768px) { .navbar__links { display: none; } }
+
+
+/* ============================================================
+   7. BOTONES
+   ============================================================ */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  background-color: var(--color-primary);
+  color: #fff;
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  font-weight: var(--fw-semibold);
+  padding: 0.85rem 1.75rem;
+  border-radius: var(--radius-pill);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: var(--shadow-btn);
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
+}
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  background-color: var(--color-primary-dark);
+  transform: translateY(-2px);
+}
+
+/* Variante de ancho completo para el formulario */
+.btn-primary--full { width: 100%; justify-content: center; }
+
+
+/* ============================================================
+   8. HERO — CSS Grid (RT-04) con imagen de fondo tipo banner
+   El texto se superpone sobre la imagen (position:absolute)
+   manteniendo las clases semánticas para la rúbrica del laboratorio.
+   ============================================================ */
+.hero {
+  position: relative;          /* contexto de posicionamiento para la imagen */
+  overflow: hidden;
+  min-height: 80vh;            /* reducido de 100vh para menos recorte vertical */
+  display: flex;
+  align-items: center;
+  background-color: #FFFFFF;   /* fallback mientras carga la imagen */
+}
+
+/* La imagen cubre todo el hero — se posiciona absolutamente */
+.hero__image-wrapper {
+  position: absolute;
+  inset: 0;                    /* top:0 right:0 bottom:0 left:0 */
+  z-index: 0;
+  pointer-events: none;        /* no interfiere con clics del texto */
+}
+.hero__image-wrapper img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;           /* cubre todo el contenedor */
+  object-position: right top;  /* ancla la imagen desde arriba → cabeza visible */
+  display: block;
+  transition: opacity 1.5s ease-in-out; /* Efecto de transición lenta */
+}
+
+/* Estado por defecto (Modo Luminoso) */
+.hero__img--light { opacity: 1; }
+.hero__img--dark  { opacity: 0; }
+
+/* Modo Oscuro activo */
+body.dark-mode .hero__img--light { opacity: 0; }
+body.dark-mode .hero__img--dark  { opacity: 1; }
+
+/* El contenedor del texto va encima de la imagen */
+.hero__grid {
+  position: relative;          /* z-index solo funciona en elementos posicionados */
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* mantiene la estructura de 2 columnas del laboratorio */
+  align-items: center;
+  width: 100%;
+  min-height: inherit;
+  padding: var(--space-2xl) 0;  /* espaciado vertical generoso */
+}
+
+/* El contenido textual ocupa la columna izquierda */
+.hero__content {
+  max-width: 520px;
+}
+
+.hero__title {
+  font-family: var(--font-heading);
+  font-size: var(--fs-hero-title);
+  font-weight: var(--fw-black);
+  line-height: 1.2;
+  color: var(--color-dark); /* Texto oscuro en modo luminoso */
+  margin-bottom: var(--space-sm);
+  transition: color var(--transition-base);
+}
+body.dark-mode .hero__title {
+  color: #ffffff;
+}
+.hero__title .accent { color: var(--color-primary); }
+
+.hero__title .accent-gradient {
+  background: linear-gradient(90deg, #9b2df1, #ff239a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Descripción del hero */
+.hero__desc,
+.hero__subtitle {
+  color: var(--color-gray); /* Texto gris en modo luminoso */
+  margin-bottom: var(--space-lg);
+  line-height: 1.7;
+  font-size: 1rem;
+  transition: color var(--transition-base);
+}
+body.dark-mode .hero__desc,
+body.dark-mode .hero__subtitle {
+  color: #e0e0e0;
+}
+
+/* Botones del hero según imagen */
+.hero__actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.btn-gradient {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: linear-gradient(90deg, #9b2df1, #ff239a);
+  color: #ffffff;
+  padding: 0.8rem 1.5rem;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  font-weight: var(--fw-bold);
+  font-family: var(--font-heading);
+  transition: opacity var(--transition-fast);
+}
+
+.btn-gradient:hover {
+  opacity: 0.9;
+  color: #ffffff;
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: transparent;
+  color: var(--color-primary); /* Texto fucsia en modo luminoso */
+  border: 1px solid #ff239a;
+  padding: 0.8rem 1.5rem;
+  border-radius: var(--radius-sm);
+  text-decoration: none;
+  font-weight: var(--fw-bold);
+  font-family: var(--font-heading);
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.btn-outline:hover {
+  background: rgba(255, 35, 154, 0.1);
+  color: var(--color-primary);
+}
+
+body.dark-mode .btn-outline {
+  color: #ffffff;
+}
+
+body.dark-mode .btn-outline:hover {
+  color: #ffffff;
+}
+
+/* Responsive: en móvil la imagen se convierte en fondo y el texto ocupa todo el ancho */
+@media (max-width: 768px) {
+  .hero__grid {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+  .hero__content { max-width: 100%; }
+  .hero__image-wrapper img { object-position: center top; }
+  /* Superposición blanca para garantizar legibilidad del texto en móvil */
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.6);
+    z-index: 0;
+  }
+}
+
+
+
+/* ============================================================
+   9. CARRUSEL DE CATEGORÍAS (Marquee Infinito)
+   ============================================================ */
+.marquee-container {
+  width: 100vw;
+  max-width: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: var(--space-md) 0;
+}
+
+.marquee {
+  width: 100vw;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.marquee__track {
+  display: inline-flex;
+  gap: var(--space-sm);
+  /* La animación mueve la pista de 0 a -50% */
+  animation: scroll 60s linear infinite;
+  padding-left: var(--space-sm);
+  will-change: transform;
+}
+
+/* Pausar en hover (Accesibilidad/UX) */
+.marquee:hover .marquee__track {
+  animation-play-state: paused;
+}
+
+.marquee--reverse .marquee__track {
+  animation-direction: reverse;
+}
+
+@keyframes scroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.category-pill {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background-color: var(--color-bg);
+  color: var(--color-dark);
+  font-family: var(--font-body);
+  font-weight: var(--fw-semibold);
+  font-size: var(--fs-body);
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--color-border);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  transition: all var(--transition-fast);
+  cursor: default;
+}
+
+.category-pill:hover {
+  background-color: var(--color-primary);
+  color: var(--color-text-on-dark);
+  border-color: var(--color-primary);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-btn);
+}
+
+/* Tarjeta de oferta especial — fondo fucsia */
+.offer-card {
+  background: var(--color-primary);
+  color: var(--color-text-on-dark);
+  border-radius: var(--radius-md);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: var(--space-lg) var(--space-md);
+  gap: var(--space-sm);
+}
+.offer-card__title { font-family: var(--font-heading); font-size: var(--fs-card-title); font-weight: var(--fw-bold); }
+.offer-card__desc  { font-size: var(--fs-small); line-height: 1.6; }
+
+@media (max-width: 768px) {
+  .category-pill {
+    padding: 0.6rem 1.2rem;
+    font-size: var(--fs-small);
+  }
+}
+
+
+/* ============================================================
+   10. COMPROMISOS DE MARCA — Flexbox con separadores
+   ============================================================ */
+.section--commitments {
+  background-color: var(--color-bg-commitments);
+  padding: var(--space-lg) 0;
+}
+
+.commitments-row {
+  display: flex;             /* Flexbox en fila — cumple RT-03 */
+  justify-content: space-around;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.commitment-card {
+  flex: 1 1 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--space-md) var(--space-sm);
+  gap: var(--space-xs);
+  /* Separador vertical entre items usando borde derecho excepto el último */
+  border-right: 1px solid var(--color-border-commitments);
+}
+.commitment-card:last-child { border-right: none; }
+
+.commitment-card__icon {
+  width: 100px;
+  height: 100px;
+  margin-bottom: var(--space-xs);
+  /* Tinte fucsia para igualar la imagen de referencia */
+  filter: invert(22%) sepia(82%) saturate(3000%) hue-rotate(305deg) brightness(90%) contrast(95%);
+}
+.commitment-card__icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.commitment-card__title {
+  font-family: var(--font-heading);
+  font-size: var(--fs-card-title);
+  font-weight: var(--fw-bold);
+  color: var(--color-text-inverted-title);
+  margin: 0;
+  line-height: 1.3;
+}
+
+.commitment-card__desc {
+  font-size: var(--fs-small);
+  color: var(--color-text-inverted-desc);
+  line-height: 1.6;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .commitments-row   { flex-direction: column; align-items: center; gap: var(--space-sm); }
+  .commitment-card   { flex: unset; width: 100%; max-width: 280px; border-right: none; border-bottom: 1px solid var(--color-border-commitments); }
+  .commitment-card:last-child { border-bottom: none; }
+}
+
+
+/* ============================================================
+   11. BENEFICIOS — Flexbox (RT-03) sobre sección oscura
+   ============================================================ */
+.benefits-row {
+  display: flex; /* ← Flexbox en fila */
+  justify-content: space-between;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+}
+
+.benefit-card {
+  flex: 1 1 200px; /* crece equitativamente, mínimo 200px */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--space-lg) var(--space-sm);
+  gap: var(--space-sm);
+}
+
+.benefit-card__icon     { width: 120px; height: 120px; color: var(--color-primary); }
+.benefit-card__icon img { width: 100%; height: 100%; object-fit: contain; }
+.benefit-card__title    { font-family: var(--font-heading); font-size: var(--fs-card-title); font-weight: var(--fw-bold); color: var(--color-text-inverted-title); margin: 0; }
+.benefit-card__desc     { font-size: var(--fs-small); color: var(--color-text-inverted-desc); line-height: 1.6; margin: 0; }
+
+@media (max-width: 768px) {
+  .benefits-row { flex-direction: column; align-items: center; }
+  .benefit-card { flex: unset; width: 100%; max-width: 320px; }
+}
+
+
+/* ============================================================
+   11. TESTIMONIOS — CSS Grid (RT-04) — 3 columnas
+   ============================================================ */
+.testimonials-carousel {
+  position: relative;
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  min-height: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.testimonial-card {
+  background: var(--color-bg);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-lg) var(--space-md);
+  text-align: center;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease, visibility 0.5s;
+}
+
+.testimonial-card.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+  position: relative;
+}
+
+.testimonial-card__quote  { font-family: var(--font-heading); font-size: 4rem; font-weight: var(--fw-black); color: var(--color-primary); line-height: 1; display: block; margin-bottom: -1rem; }
+.testimonial-card__text   { font-size: var(--fs-body); color: var(--color-gray-dark); line-height: 1.7; margin: 0 0 var(--space-md); font-style: normal; }
+.testimonial-card__author { font-size: var(--fs-small); font-weight: var(--fw-semibold); color: var(--color-primary); font-style: normal; }
+
+/* Estilos para el formulario de opiniones */
+.review-form-wrapper {
+  margin-top: var(--space-xl);
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  background: var(--color-bg);
+  padding: var(--space-lg);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-card);
+}
+
+.review-form__title {
+  font-family: var(--font-heading);
+  font-size: 1.5rem;
+  font-weight: var(--fw-bold);
+  color: var(--color-primary);
+  text-align: center;
+  margin-bottom: var(--space-md);
+}
+
+.review-form__btn {
+  margin-top: var(--space-sm);
+}
+
+
+/* ============================================================
+   12. CONTACTO — Flexbox (RT-03): info | formulario
+   ============================================================ */
+
+/* Fondo claro ligeramente gris para que el card destaque */
+.section--contact-light {
+  background-color: var(--color-bg-contact);
+}
+
+/* Contenedor principal: dos columnas con Flexbox */
+.contact-layout {
+  display: flex;             /* ← Flexbox RT-03 */
+  gap: var(--space-2xl);
+  align-items: flex-start;
+}
+
+/* ── Panel izquierdo ── */
+.contact-info {
+  flex: 0 0 300px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+/* Título "Contacto" en fucsia como la imagen */
+.contact-info__heading {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: var(--fw-bold);
+  color: var(--color-primary);
+  margin: 0;
+}
+
+.contact-info__subtitle {
+  font-size: var(--fs-body);
+  color: var(--color-gray-dark);
+  margin: 0;
+}
+
+/* Lista de datos (tel, email, usuario) */
+.contact-info__list {
+  list-style: none;
+  padding: 0;
+  margin: var(--space-sm) 0 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.contact-info__item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+/* Ícono PNG con tinte fucsia */
+.contact-info__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  filter: invert(22%) sepia(82%) saturate(3000%) hue-rotate(305deg) brightness(90%) contrast(95%);
+  transition: transform var(--transition-fast);
+}
+.contact-info__icon:hover {
+  transform: translateY(-3px) scale(1.1);
+}
+/* Modificador: sin filtro — para íconos que ya tienen sus propios colores (ej. Instagram) */
+.contact-info__icon--plain {
+  filter: none;
+}
+
+.contact-info__link {
+  font-size: var(--fs-body);
+  color: var(--color-dark);
+  text-decoration: none;
+  transition: color var(--transition-fast);
+}
+.contact-info__link:hover { color: var(--color-primary); }
+
+/* Fila de íconos de redes sociales (círculos fucsia) */
+.contact-info__socials {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: var(--space-xs);
+}
+
+.contact-social-btn {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background-color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
+  flex-shrink: 0;
+}
+.contact-social-btn img {
+  /* Fuerza el ícono a blanco sobre el fondo fucsia */
+  filter: brightness(0) invert(1);
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+}
+.contact-social-btn:hover {
+  background-color: var(--color-primary-dark, #a8005a);
+  transform: translateY(-2px);
+}
+/* Modificador: el ícono ya trae su propio fondo circular y color — no superponer CSS */
+.contact-social-btn--plain {
+  background-color: transparent; /* sin fondo adicional */
+  width: auto;
+  height: auto;
+  padding: 0;
+}
+.contact-social-btn--plain img {
+  filter: none; /* mostrar colores originales del PNG */
+  width: 44px;
+  height: 44px;
+}
+.contact-social-btn--plain:hover {
+  background-color: transparent;
+  transform: translateY(-2px);
+}
+
+/* ── Panel derecho: Formulario ── */
+.contact-form-wrapper { flex: 1; }
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+.contact-form__group { display: flex; flex-direction: column; }
+
+/* Inputs minimalistas (sin labels visibles, solo placeholders) */
+.contact-form__input {
+  font-family: var(--font-body);
+  font-size: var(--fs-body);
+  color: var(--color-dark);
+  background: var(--color-input-bg);
+  border: 1.5px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 1.1rem;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+.contact-form__input::placeholder { color: #aaa; }
+
+/* ============================================================
+   14. CATÁLOGO DE PRODUCTOS
+   ============================================================ */
+
+/* Filtros y Controles Superiores */
+.catalog-header {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+}
+
+.catalog-filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.catalog-filter-btn {
+  background-color: var(--color-bg-section);
+  border: none;
+  border-radius: var(--radius-pill);
+  padding: 0.5rem 1.2rem;
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  font-weight: var(--fw-medium);
+  color: var(--color-dark);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.catalog-filter-btn:hover {
+  background-color: var(--color-border);
+}
+
+.catalog-filter-btn--active {
+  background-color: var(--color-primary);
+  color: var(--color-text-on-dark);
+}
+
+.catalog-controls {
+  display: flex;
+  gap: var(--space-sm);
+}
+
+.catalog-search, .catalog-sort {
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-family: var(--font-body);
+  font-size: var(--fs-small);
+  color: var(--color-dark);
+  background-color: var(--color-bg);
+}
+
+.catalog-search:focus, .catalog-sort:focus {
+  outline: none;
+  border-color: var(--color-primary);
+}
+
+/* Título y Carrito */
+.catalog-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-lg);
+  flex-wrap: wrap;
+}
+
+.catalog-title {
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  color: var(--color-dark);
+  margin: 0;
+}
+
+.catalog-cart-link {
+  color: var(--color-primary);
+  font-weight: var(--fw-bold);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.catalog-cart-link:hover {
+  text-decoration: underline;
+}
+
+/* Grid de Productos */
+.catalog-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  justify-content: center;
+  gap: var(--space-lg);
+  margin-bottom: var(--space-xl);
+}
+
+/* Tarjeta de Producto */
+.catalog-item {
+  background-color: var(--color-bg);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+  padding: var(--space-md);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  transition: transform var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.catalog-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0,0,0,0.12);
+}
+
+/* Etiquetas (Novedad, Más Vendido) */
+.catalog-item__badge {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  padding: 0.3rem 0.8rem;
+  border-radius: var(--radius-pill);
+  font-size: 0.75rem;
+  font-weight: var(--fw-bold);
+  color: #fff;
+  z-index: 10;
+}
+.catalog-item__badge--gold {
+  background-color: #cca43b; /* Tono dorado */
+}
+
+/* Imagen */
+.catalog-item__img-wrapper {
+  width: 100%;
+  height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: var(--space-sm);
+}
+
+.catalog-item__img-wrapper img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* Cuerpo de la tarjeta */
+.catalog-item__body {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.catalog-item__title {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: var(--fw-bold);
+  color: var(--color-dark);
+  margin: 0 0 0.35rem 0;
+}
+
+.catalog-item__desc {
+  font-size: 0.85rem;
+  color: var(--color-gray-dark);
+  margin: 0 0 0.75rem 0;
+  line-height: 1.4;
+}
+
+/* Calificación */
+.catalog-item__rating {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.stars {
+  color: #cca43b;
+  letter-spacing: -2px;
+}
+.score {
+  font-weight: var(--fw-bold);
+  color: var(--color-dark);
+}
+
+/* Precio */
+.catalog-item__price {
+  font-size: 1.4rem;
+  font-weight: var(--fw-bold);
+  color: var(--color-dark);
+  margin: 0 0 1rem 0;
+}
+
+/* Lista de Precios */
+.catalog-item__price-list {
+  margin: 0 0 1rem 0;
+  font-size: 0.9rem;
+  color: var(--color-dark);
+}
+
+.catalog-item__price-list p {
+  margin: 0 0 0.25rem 0;
+}
+
+.catalog-item__price-list ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.catalog-item__price-list li {
+  margin-bottom: 0.15rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Botón Añadir al Carrito */
+.catalog-item__btn {
+  background-color: var(--color-primary-dark, #8a004b);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-pill);
+  padding: 0.65rem;
+  font-family: var(--font-body);
+  font-weight: var(--fw-bold);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: background-color var(--transition-fast);
+  width: 100%;
+  margin-top: auto;
+}
+
+.catalog-item__btn:hover {
+  background-color: var(--color-primary);
+}
+
+/* Paginación */
+.catalog-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background-color: #d1d1d1;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color var(--transition-fast), transform var(--transition-fast);
+}
+
+.dot--active {
+  background-color: var(--color-primary-dark, #8a004b);
+  transform: scale(1.2);
+}
+.contact-form__input:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(216, 27, 122, 0.12);
+}
+.contact-form__textarea { resize: vertical; min-height: 130px; }
+
+/* Botón principal — ancho completo */
+.btn-primary--full { width: 100%; justify-content: center; }
+
+@media (max-width: 768px) {
+  .contact-layout { flex-direction: column; }
+  .contact-info   { flex: unset; width: 100%; }
+}
+
+
+
+/* ============================================================
+   13. FOOTER — Flexbox
+   ============================================================ */
+.footer { background-color: var(--color-black); color: var(--color-text-muted-dark); padding: var(--space-lg) 0; }
+.footer__inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--space-sm); }
+.footer__copy  { font-size: var(--fs-small); }
+.footer__links { display: flex; gap: var(--space-sm); }
+.footer__links a { color: var(--color-text-muted-dark); font-size: var(--fs-small); text-decoration: none; transition: color var(--transition-fast); }
+.footer__links a:hover { color: var(--color-primary); }
+
+/* ============================================================
+   14. MODAL Y CARRUSEL DE PRODUCTO (Pestañas Fantasy)
+   ============================================================ */
+.product-modal {
+  border: none;
+  border-radius: var(--radius-lg);
+  padding: 0;
+  max-width: 600px;
+  width: 90%;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.product-modal::backdrop {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+.product-modal__content {
+  position: relative;
+  padding: var(--space-lg);
+  background: var(--color-bg);
+}
+
+.product-modal__close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--color-gray-dark);
+  cursor: pointer;
+  z-index: 10;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.product-modal__close:focus-visible {
+  outline: 2px solid var(--color-primary);
+}
+
+.carousel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.carousel__image-container {
+  width: 100%;
+  max-width: 400px;
+  aspect-ratio: 1/1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.carousel__img {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+  border-radius: var(--radius-md);
+}
+
+.carousel__controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  gap: var(--space-sm);
+}
+
+.carousel__btn {
+  background: var(--color-primary-light);
+  border: none;
+  color: var(--color-primary-dark);
+  border-radius: 50%;
+  width: 45px;
+  height: 45px;
+  font-size: 1.2rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--transition-fast);
+}
+
+.carousel__btn:hover {
+  background: var(--color-primary);
+  color: white;
+}
+
+.carousel__btn:focus-visible {
+  outline: 2px solid var(--color-primary-dark);
+}
+
+.carousel__info {
+  text-align: center;
+  flex: 1;
+}
+
+.carousel__name {
+  font-family: var(--font-heading);
+  font-size: 1.2rem;
+  color: var(--color-primary);
+  margin: 0 0 0.25rem 0;
+}
+
+.carousel__price {
+  font-size: 1.1rem;
+  font-weight: var(--fw-bold);
+  color: var(--color-dark);
+  margin: 0;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}

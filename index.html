@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Suplidora MOSS — Tu distribuidora exclusiva de esmaltes, cosméticos y productos de cuidado facial.">
+  <title>Suplidora MOSS</title>
+  <link rel="stylesheet" href="css/styles.css?v=2">
+</head>
+<body>
+
+  <!-- HEADER & NAV -->
+  <header>
+    <nav class="navbar" aria-label="Navegación principal">
+      <div class="container navbar__inner">
+        <a href="#inicio" class="navbar__logo" aria-label="Suplidora MOSS - Inicio">
+          <img src="img/logo/Logo.png" alt="MOSS Logo" width="80" height="40" loading="lazy">
+        </a>
+        <ul class="navbar__links" role="list">
+          <li><a href="#inicio" class="navbar__link navbar__link--active" aria-current="page">Inicio</a></li>
+          <li><a href="#productos" class="navbar__link">Productos</a></li>
+          <li><a href="#beneficios" class="navbar__link">Beneficios</a></li>
+          <li><a href="#testimonios" class="navbar__link">Testimonios</a></li>
+          <li><a href="#contacto" class="navbar__link">Contacto</a></li>
+        </ul>
+        <div class="navbar__actions">
+          <a href="#catalogo" class="navbar__catalog-btn" aria-label="Ver catálogo">
+            <img src="img/panel/catalogo_panel.png" alt="" width="60" height="60">
+          </a>
+          <div class="navbar__dark-toggle-wrapper" title="Alternar modo oscuro">
+            <input type="checkbox" id="darkToggle" class="dark-toggle__input" role="switch" aria-label="Activar modo oscuro" aria-pressed="false">
+            <label for="darkToggle" class="dark-toggle__label">
+              <span class="dark-toggle__thumb"></span>
+              <span class="visually-hidden">Modo oscuro</span>
+            </label>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <!-- SECCIÓN: HERO -->
+    <section id="inicio" class="hero">
+      <!-- Imagen de fondo posicionada absolutamente (cubre toda la sección) -->
+      <div class="hero__image-wrapper">
+        <img src="img/panel/woman_front_white.png"
+             alt="Mujer sonriente representando la belleza natural con productos MOSS (Modo Claro)"
+             class="hero__img hero__img--light"
+             loading="eager">
+        <img src="img/panel/woman_front.png"
+             alt="Mujer sonriente representando la belleza natural con productos MOSS (Modo Oscuro)"
+             class="hero__img hero__img--dark"
+             loading="eager">
+      </div>
+
+      <!-- Contenedor del texto — z-index:1, sobre la imagen -->
+      <div class="container">
+        <div class="hero__grid">
+          <div class="hero__content">
+            <h1 class="hero__title">
+              TODO PARA<br><span class="accent-gradient">UÑAS</span><br>PROFESIONALES
+            </h1>
+            <p class="hero__desc">
+              Productos premium para técnicas,<br>salones y emprendedoras.
+            </p>
+            <div class="hero__actions">
+              <a href="#catalogo" class="btn-gradient">VER CATÁLOGO</a>
+              <a href="#contactos" class="btn-outline">CONTACTAR</a>
+            </div>
+          </div>
+          <!-- Columna derecha vacía: la imagen ya está posicionada absolutamente -->
+          <div aria-hidden="true"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN: PRODUCTOS -->
+    <section id="productos" class="section section--alt">
+      <div class="container">
+        <h2 class="section-title section-title--centered">Nuestras Categorías</h2>
+      </div>
+
+      <!-- Carrusel Infinito de Categorías -->
+      <div class="marquee-container">
+        <!-- Pista Superior -->
+        <div class="marquee" aria-label="Categorías principales">
+          <div class="marquee__track">
+            <!-- Elementos originales -->
+            <span class="category-pill">Pestañas y accesorios</span>
+            <span class="category-pill">Semi-permanentes y Efecto</span>
+            <span class="category-pill">Colección de Tips</span>
+            <span class="category-pill">Geles y Nail Art</span>
+            <span class="category-pill">Herramientas Profesionales</span>
+            <span class="category-pill">Pinceles Profesionales</span>
+            <span class="category-pill">Lámparas UV/LED</span>
+            <span class="category-pill">Drills Profesionales</span>
+            <span class="category-pill">Puntas para Drill</span>
+            <span class="category-pill">Pedicura y Complementos</span>
+            <span class="category-pill">Protección e Higiene</span>
+            <span class="category-pill">Imanes Cat Eye-Crea Efectos</span>
+            <span class="category-pill">Colección de Efectos para Uñas</span>
+            <span class="category-pill">Lámparas de Iluminación</span>
+            <span class="category-pill">Lámparas para Gel X</span>
+            <span class="category-pill">Extractores de Polvo</span>
+            <span class="category-pill">Accesorios de Manicura</span>
+            <span class="category-pill">Cuidado de Cutículas</span>
+            <!-- Duplicados para ilusión de scroll infinito -->
+            <span class="category-pill" aria-hidden="true">Pestañas y accesorios</span>
+            <span class="category-pill" aria-hidden="true">Semi-permanentes y Efecto</span>
+            <span class="category-pill" aria-hidden="true">Colección de Tips</span>
+            <span class="category-pill" aria-hidden="true">Geles y Nail Art</span>
+            <span class="category-pill" aria-hidden="true">Herramientas Profesionales</span>
+            <span class="category-pill" aria-hidden="true">Pinceles Profesionales</span>
+            <span class="category-pill" aria-hidden="true">Lámparas UV/LED</span>
+            <span class="category-pill" aria-hidden="true">Drills Profesionales</span>
+            <span class="category-pill" aria-hidden="true">Puntas para Drill</span>
+            <span class="category-pill" aria-hidden="true">Pedicura y Complementos</span>
+            <span class="category-pill" aria-hidden="true">Protección e Higiene</span>
+            <span class="category-pill" aria-hidden="true">Imanes Cat Eye-Crea Efectos</span>
+            <span class="category-pill" aria-hidden="true">Colección de Efectos para Uñas</span>
+            <span class="category-pill" aria-hidden="true">Lámparas de Iluminación</span>
+            <span class="category-pill" aria-hidden="true">Lámparas para Gel X</span>
+            <span class="category-pill" aria-hidden="true">Extractores de Polvo</span>
+            <span class="category-pill" aria-hidden="true">Accesorios de Manicura</span>
+            <span class="category-pill" aria-hidden="true">Cuidado de Cutículas</span>
+          </div>
+        </div>
+
+        <!-- Pista Inferior (Sentido inverso) -->
+        <div class="marquee marquee--reverse" aria-label="Más categorías">
+          <div class="marquee__track">
+            <!-- Elementos originales -->
+            <span class="category-pill">Maletas para Manicura</span>
+            <span class="category-pill">Productos de Depilación</span>
+            <span class="category-pill">Preparados-Bases-Top</span>
+            <span class="category-pill">Geles de Construcción</span>
+            <span class="category-pill">Sistema Acrílico</span>
+            <span class="category-pill">Gel Painting y Acuarelas</span>
+            <span class="category-pill">Removedores de Semipermanent</span>
+            <span class="category-pill">Reposabrazos</span>
+            <span class="category-pill">Kits Profesionales</span>
+            <span class="category-pill">Repuestos y Complementos</span>
+            <span class="category-pill">Herramientas de Práctica</span>
+            <span class="category-pill">Carritos ayudantes</span>
+            <span class="category-pill">Muestrarios y Exhibición</span>
+            <span class="category-pill">Limas, Buffers y Pulido</span>
+            <span class="category-pill">Aerógrafos</span>
+            <span class="category-pill">Manicura sin Lámpara</span>
+            <span class="category-pill">Pegamento para Acrílico</span>
+            <span class="category-pill">Colección Moss</span>
+            <!-- Duplicados -->
+            <span class="category-pill" aria-hidden="true">Maletas para Manicura</span>
+            <span class="category-pill" aria-hidden="true">Productos de Depilación</span>
+            <span class="category-pill" aria-hidden="true">Preparados-Bases-Top</span>
+            <span class="category-pill" aria-hidden="true">Geles de Construcción</span>
+            <span class="category-pill" aria-hidden="true">Sistema Acrílico</span>
+            <span class="category-pill" aria-hidden="true">Gel Painting y Acuarelas</span>
+            <span class="category-pill" aria-hidden="true">Removedores de Semipermanent</span>
+            <span class="category-pill" aria-hidden="true">Reposabrazos</span>
+            <span class="category-pill" aria-hidden="true">Kits Profesionales</span>
+            <span class="category-pill" aria-hidden="true">Repuestos y Complementos</span>
+            <span class="category-pill" aria-hidden="true">Herramientas de Práctica</span>
+            <span class="category-pill" aria-hidden="true">Carritos ayudantes</span>
+            <span class="category-pill" aria-hidden="true">Muestrarios y Exhibición</span>
+            <span class="category-pill" aria-hidden="true">Limas, Buffers y Pulido</span>
+            <span class="category-pill" aria-hidden="true">Aerógrafos</span>
+            <span class="category-pill" aria-hidden="true">Manicura sin Lámpara</span>
+            <span class="category-pill" aria-hidden="true">Pegamento para Acrílico</span>
+            <span class="category-pill" aria-hidden="true">Colección Moss</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="offer-container" style="margin-top: var(--space-xl); display: flex; justify-content: center;">
+          <!-- Tarjeta de Oferta -->
+          <div class="offer-card" role="article" aria-label="Oferta Especial del Mes" style="max-width: 600px; width: 100%;">
+            <h3 class="offer-card__title">💎 Oferta del Mes</h3>
+            <p class="offer-card__desc">Lleva 3 y paga 2 en temporada. ¡Aprovecha ahora!</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN: CATÁLOGO DE PRODUCTOS -->
+    <section id="catalogo" class="section">
+      <div class="container">
+        <!-- Barra superior de filtros -->
+        <div class="catalog-header">
+          <div class="catalog-filters">
+            <button class="catalog-filter-btn catalog-filter-btn--active" data-filter="pestanas">Pestañas y accesorios</button>
+            <button class="catalog-filter-btn" data-filter="semi-permanentes">Semi-permanentes y Efectos</button>
+          </div>
+          <div class="catalog-controls">
+            <input type="text" class="catalog-search" placeholder="Buscar..." aria-label="Buscar productos">
+          </div>
+        </div>
+
+        <!-- Título -->
+        <div class="catalog-title-row">
+          <h2 class="catalog-title">Esmaltes Premium</h2>
+        </div>
+
+        <!-- Grid de Productos -->
+        <div class="catalog-grid">
+          <!-- Producto 1 -->
+          <article class="catalog-item" data-category="pestanas">
+            <div class="catalog-item__img-wrapper">
+              <img src="img/productos/pestañas_accesorios/pestañas_fantasy/pestañas_fantsy.png" alt="Pestañas Fantasy" loading="lazy">
+            </div>
+            <div class="catalog-item__body">
+              <h3 class="catalog-item__title">Pestañas Fantasy</h3>
+              <p class="catalog-item__desc">Pestañas postizas de alta calidad para una mirada intensa y dramática.</p>
+              <div class="catalog-item__rating">
+                <span class="stars">⭐⭐⭐⭐⭐</span> <span class="score">(4.9)</span>
+              </div>
+              <div class="catalog-item__price-list">
+                <p><strong>Precios:</strong></p>
+                <ul>
+                  <li>YY: ₡4500</li>
+                  <li>3D: ₡4500</li>
+                  <li>4D: ₡5000</li>
+                  <li>5D: ₡5500</li>
+                  <li>6D: ₡6500</li>
+                </ul>
+              </div>
+              <button class="catalog-item__btn" onclick="openCarouselModal('fantasy')" aria-label="Ver detalles de Pestañas Fantasy">Ver detalles</button>
+            </div>
+          </article>
+          
+          <!-- Producto 2 -->
+          <article class="catalog-item" data-category="pestanas">
+            <div class="catalog-item__badge catalog-item__badge--gold">Más Vendido</div>
+            <div class="catalog-item__img-wrapper">
+              <img src="img/productos/pestañas_accesorios/Variedad_blister_de_pestañas/1.png" alt="Variedad blister de pestañas" loading="lazy">
+            </div>
+            <div class="catalog-item__body">
+              <h3 class="catalog-item__title">Variedad blister de pestañas</h3>
+              <p class="catalog-item__desc">Pestañas de alta calidad en distintas curvaturas y longitudes, perfectas para un acabado profesional y volumen espectacular.</p>
+              <div class="catalog-item__rating">
+                <span class="stars">⭐⭐⭐⭐⭐</span> <span class="score">(4.9)</span>
+              </div>
+              <div class="catalog-item__price-list">
+                <p><strong>Precios:</strong></p>
+                <ul>
+                  <li>Punto a punto: ₡2500</li>
+                  <li>Pelo a pelo: ₡2500</li>
+                  <li>Autofloración: ₡3000</li>
+                  <li>Fibra tecnológica: ₡4000</li>
+                </ul>
+              </div>
+              <button class="catalog-item__btn" onclick="openCarouselModal('blister')" aria-label="Ver detalles de Variedad blister de pestañas">Ver detalles</button>
+            </div>
+          </article>
+
+          <!-- Producto 3 -->
+          <article class="catalog-item" data-category="pestanas">
+            <div class="catalog-item__img-wrapper">
+              <img src="img/productos/pestañas_accesorios/Kit Lifting ICONSIGN/kit-lifting.png" alt="Kit Lifting ICONSIGN" loading="lazy">
+            </div>
+            <div class="catalog-item__body">
+              <h3 class="catalog-item__title">Kit Lifting ICONSIGN</h3>
+              <p class="catalog-item__desc">
+                Kit ideal para uso profesional en lifting de pestañas. Rinde de 20 a 30 personas.<br><br>
+                <strong>El kit incluye:</strong><br>
+                – 1 pegamento<br>
+                – 1 fijador<br>
+                – 1 permanente<br>
+                – 1 nutriente<br>
+                – 1 limpiador<br>
+                – 5 pares de almohadillas de silicón de diferentes medidas: S/M/M1/M2/L
+              </p>
+              <div class="catalog-item__rating">
+                <span class="stars">⭐⭐⭐⭐⭐</span> <span class="score">(4.9)</span>
+              </div>
+              <div class="catalog-item__price-list">
+                <p><strong>Precios:</strong></p>
+                <ul>
+                  <li>₡9900</li>
+                </ul>
+              </div>
+              <button class="catalog-item__btn" onclick="openCarouselModal('kit_lifting')" aria-label="Ver detalles del Kit Lifting ICONSIGN">Ver detalles</button>
+            </div>
+          </article>
+
+
+          <!-- Producto 9 -->
+          <article class="catalog-item" data-category="semi-permanentes">
+            <div class="catalog-item__img-wrapper">
+              <img src="img/productos/Semi-permanentes%20y%20Efectos/Luminary%20base%20+%20color/lumi-one.png" alt="Luminary Base + Color" loading="lazy">
+            </div>
+            <div class="catalog-item__body">
+              <h3 class="catalog-item__title">Luminary Base + Color</h3>
+              <p class="catalog-item__desc">Sistema multi-flex en gel que actúa como base y color. Ideal para una manicura semi-permanente duradera y perfecta.</p>
+              <div class="catalog-item__rating">
+                <span class="stars">⭐⭐⭐⭐⭐</span> <span class="score">(5.0)</span>
+              </div>
+              <p class="catalog-item__price">₡12500</p>
+              <button class="catalog-item__btn" onclick="openCarouselModal('luminary')" aria-label="Ver detalles de Luminary Base + Color">Ver detalles</button>
+            </div>
+          </article>
+
+          <!-- Producto 10 -->
+          <article class="catalog-item" data-category="semi-permanentes">
+            <div class="catalog-item__img-wrapper">
+              <img src="img/productos/Semi-permanentes%20y%20Efectos/Semi-permanentes%20Victoria/principal.png" alt="Semi-permanentes Victoria" loading="lazy">
+            </div>
+            <div class="catalog-item__body">
+              <h3 class="catalog-item__title">Semi-permanentes Victoria</h3>
+              <p class="catalog-item__desc">Nuevos semi-permanentes Victoria, con fórmula libre de TPO, ideales para lograr un acabado profesional, uniforme y de larga duración. Destacan por su alta pigmentación y fácil aplicación, perfectos para manicuras impecables.</p>
+              <div class="catalog-item__rating">
+                <span class="stars">⭐⭐⭐⭐⭐</span> <span class="score">(5.0)</span>
+              </div>
+              <div class="catalog-item__price-list">
+                <p><strong>Precios:</strong></p>
+                <ul>
+                  <li>Colores lisos: ₡2.000</li>
+                  <li>Escarchados: ₡2.300</li>
+                </ul>
+              </div>
+              <button class="catalog-item__btn" onclick="openCarouselModal('victoria')" aria-label="Ver detalles de Semi-permanentes Victoria">Ver detalles</button>
+            </div>
+          </article>
+        </div>
+
+        <!-- Paginación -->
+        <div class="catalog-pagination">
+          <span class="dot dot--active"></span>
+          <span class="dot"></span>
+          <span class="dot"></span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN: COMPROMISOS DE MARCA -->
+    <section class="section section--commitments" aria-label="Compromisos de marca">
+      <div class="container">
+        <div class="commitments-row" role="list">
+
+          <!-- Ingredientes Naturales -->
+          <div class="commitment-card" role="listitem">
+            <div class="commitment-card__icon" aria-hidden="true">
+              <img src="img/panel/sheet_panel.png" alt="Hoja verde, símbolo de ingredientes naturales" loading="lazy">
+            </div>
+            <h3 class="commitment-card__title">Ingredientes Naturales</h3>
+            <p class="commitment-card__desc">Fórmulas con extractos de plantas y sin parabenos.</p>
+          </div>
+
+          <!-- Libre de Crueldad -->
+          <div class="commitment-card" role="listitem">
+            <div class="commitment-card__icon" aria-hidden="true">
+              <img src="img/panel/rabbit_panel.png" alt="Conejo, símbolo de libre de crueldad animal" loading="lazy">
+            </div>
+            <h3 class="commitment-card__title">Libre de Crueldad</h3>
+            <p class="commitment-card__desc">Productos no testeados en animales.</p>
+          </div>
+
+          <!-- Dermatológicamente Probado -->
+          <div class="commitment-card" role="listitem">
+            <div class="commitment-card__icon" aria-hidden="true">
+              <img src="img/panel/drop_panel.png" alt="Gota, símbolo de dermatológicamente probado" loading="lazy">
+            </div>
+            <h3 class="commitment-card__title">Dermatológicamente Probado</h3>
+            <p class="commitment-card__desc">Seguros para tu piel, incluso la más sensible.</p>
+          </div>
+
+          <!-- Empaque Sustentable -->
+          <div class="commitment-card" role="listitem">
+            <div class="commitment-card__icon" aria-hidden="true">
+              <img src="img/panel/recycle_panel.png" alt="Símbolo de reciclaje, empaque sustentable" loading="lazy">
+            </div>
+            <h3 class="commitment-card__title">Empaque Sustentable</h3>
+            <p class="commitment-card__desc">Comprometidos con el medio ambiente.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN: BENEFICIOS (Oscura) -->
+    <section id="beneficios" class="section section--dark">
+      <div class="container">
+        <h2 class="section-title section-title--centered">¿Por qué elegirnos?</h2>
+        <div class="benefits-row" role="list">
+          
+          <div class="benefit-card" role="listitem">
+            <div class="benefit-card__icon" aria-hidden="true">
+              <img src="img/panel/crown_panel.png" alt="Icono de Calidad" width="120" height="120" loading="lazy">
+            </div>
+            <h3 class="benefit-card__title">Calidad</h3>
+            <p class="benefit-card__desc">Seleccionamos solo productos con los más altos estándares.</p>
+          </div>
+
+          <div class="benefit-card" role="listitem">
+            <div class="benefit-card__icon" aria-hidden="true">
+              <img src="img/panel/book_panel.png" alt="Icono de Catálogo" width="120" height="120" loading="lazy">
+            </div>
+            <h3 class="benefit-card__title">Catálogo</h3>
+            <p class="benefit-card__desc">Variedad incomparable en tonos, marcas y texturas.</p>
+          </div>
+
+          <div class="benefit-card" role="listitem">
+            <div class="benefit-card__icon" aria-hidden="true">
+              <img src="img/panel/whatsapp_panel.png" alt="Icono de Atención" width="120" height="120" loading="lazy">
+            </div>
+            <h3 class="benefit-card__title">Atención</h3>
+            <p class="benefit-card__desc">Asesoría personalizada para que encuentres lo ideal para ti.</p>
+          </div>
+
+          <div class="benefit-card" role="listitem">
+            <div class="benefit-card__icon" aria-hidden="true">
+              <img src="img/panel/prices_panel.png" alt="Icono de Precios" width="120" height="120" loading="lazy">
+            </div>
+            <h3 class="benefit-card__title">Precios</h3>
+            <p class="benefit-card__desc">Opciones accesibles sin comprometer la excelencia.</p>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN: TESTIMONIOS -->
+    <section id="testimonios" class="section">
+      <div class="container">
+        <h2 class="section-title section-title--centered">Lo que dicen nuestras clientas</h2>
+        <!-- Contenedor del Carrusel de Testimonios -->
+        <div class="testimonials-carousel" id="testimonialsCarousel" aria-live="polite">
+          <!-- Los testimonios se inyectarán mediante JS -->
+        </div>
+
+        <!-- Formulario para dejar opiniones -->
+        <div class="review-form-wrapper">
+          <h3 class="review-form__title">Escribe tu opinión</h3>
+          <form id="reviewForm" class="contact-form" novalidate>
+            <div class="contact-form__group">
+              <input type="text" id="reviewName" class="contact-form__input" placeholder="Tu nombre" required aria-label="Tu nombre">
+            </div>
+            <div class="contact-form__group">
+              <textarea id="reviewText" class="contact-form__input contact-form__textarea" placeholder="¿Qué opinas de nuestros productos?" rows="3" required aria-label="Tu opinión"></textarea>
+            </div>
+            <button type="submit" class="btn-primary btn-primary--full review-form__btn">Publicar opinión</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN: CONTACTO -->
+    <section id="contacto" class="section section--contact-light">
+      <div class="container">
+        <div class="contact-layout">
+
+          <!-- ── Panel Izquierdo: Info de Contacto ── -->
+          <div class="contact-info">
+            <h2 class="contact-info__heading">Contacto</h2>
+            <p class="contact-info__subtitle">Conéctate con nosotros y te asesoramos.</p>
+
+            <ul class="contact-info__list" role="list">
+              <!-- Teléfono / WhatsApp -->
+              <li class="contact-info__item">
+                <span class="contact-info__icon" aria-hidden="true">
+                  <img src="img/panel/phone_panel.png" alt="" width="44" height="44" loading="lazy" style="transform: scale(1.25);">
+                </span>
+                <a href="https://wa.me/c/50672332052" target="_blank" rel="noopener noreferrer" class="contact-info__link">+506 7233 2052</a>
+              </li>
+              <!-- Correo -->
+              <li class="contact-info__item">
+                <span class="contact-info__icon" aria-hidden="true">
+                  <img src="img/panel/box_panel.png" alt="" width="44" height="44" loading="lazy" style="transform: scale(1.25);">
+                </span>
+                <a href="mailto:leonarso30@hotmail.com" class="contact-info__link">leonarso30@hotmail.com</a>
+              </li>
+              <!-- Redes / usuario -->
+              <li class="contact-info__item">
+                <!-- Clase --plain desactiva el filtro fucsia para íconos con colores propios -->
+                <span class="contact-info__icon contact-info__icon--plain" aria-hidden="true">
+                  <img src="img/panel/instagram_panel.png" alt="" width="44" height="44" loading="lazy" style="transform: scale(1.25);">
+                </span>
+                <a href="https://www.instagram.com/suplidora.moss/" target="_blank" rel="noopener noreferrer" class="contact-info__link">@suplidoramoss</a>
+              </li>
+            </ul>
+
+
+          </div>
+
+          <!-- ── Panel Derecho: Ubicación (Mapa Embebido) ── -->
+          <div class="contact-form-wrapper" style="width: 100%; border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-card); min-height: 350px;">
+            <iframe 
+              src="https://maps.google.com/maps?q=Plaza+San+Carlos&hl=es&z=16&output=embed" 
+              width="100%" 
+              height="100%" 
+              style="border:0; min-height: 350px;" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- MODAL DE PRODUCTO (Pestañas Fantasy) -->
+  <dialog id="productCarouselModal" class="product-modal" aria-labelledby="modalTitle">
+    <div class="product-modal__content">
+      <button class="product-modal__close" onclick="closeCarouselModal()" aria-label="Cerrar detalles">✕</button>
+      <h2 id="modalTitle" class="visually-hidden">Detalles de Pestañas Fantasy</h2>
+      <div class="carousel">
+        <div class="carousel__image-container">
+          <img id="carouselImg" src="" alt="Pestaña seleccionada" class="carousel__img">
+        </div>
+        <div class="carousel__controls">
+          <button class="carousel__btn" onclick="prevSlide()" aria-label="Imagen anterior">◀</button>
+          <div class="carousel__info" style="display: flex; flex-direction: column; align-items: center; width: 100%;">
+            <p id="carouselItemPrice" class="carousel__price"></p>
+            <div id="carouselItemDesc" class="carousel__desc" style="font-size: 0.9rem; margin-top: 0.5rem; text-align: left; color: var(--color-gray-dark); width: 100%;"></div>
+            
+            <!-- Botón de WhatsApp -->
+            <a href="https://wa.me/c/50672332052" target="_blank" rel="noopener noreferrer" class="btn-primary" style="margin-top: 1.5rem; display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; text-decoration: none; width: 100%; max-width: 250px;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/>
+              </svg>
+              Ver Catálogo
+            </a>
+          </div>
+          <button class="carousel__btn" onclick="nextSlide()" aria-label="Siguiente imagen">▶</button>
+        </div>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- MODAL DE TÉRMINOS Y CONDICIONES -->
+  <dialog id="termsModal" class="product-modal" aria-labelledby="termsTitle">
+    <div class="product-modal__content" style="max-width: 600px; max-height: 80vh; overflow-y: auto;">
+      <button class="product-modal__close" onclick="closeTermsModal()" aria-label="Cerrar términos">✕</button>
+      <h2 id="termsTitle" style="font-family: var(--font-heading); color: var(--color-primary); margin-bottom: 1rem;">Términos y Condiciones de Servicio</h2>
+      
+      <div style="color: var(--color-dark); font-size: 0.95rem; line-height: 1.6;">
+        <p><strong>1. Aceptación de los Términos</strong><br>
+        Al acceder y utilizar este sitio web, usted acepta estar sujeto a estos términos y condiciones de uso.</p>
+        
+        <p><strong>2. Uso del Sitio</strong><br>
+        Todo el contenido de este sitio (imágenes, textos, logotipos) es propiedad exclusiva de Suplidora MOSS. Queda prohibida su reproducción sin autorización previa.</p>
+        
+        <p><strong>3. Políticas de Compra</strong><br>
+        Los precios y la disponibilidad de los productos están sujetos a cambios sin previo aviso. Nos reservamos el derecho de cancelar pedidos sospechosos o fraudulentos.</p>
+        
+        <p><strong>4. Envíos y Devoluciones</strong><br>
+        Las devoluciones solo se aceptan dentro de los primeros 7 días después de recibir el producto, siempre y cuando este no haya sido abierto ni utilizado.</p>
+        
+        <p><strong>5. Privacidad</strong><br>
+        La información recopilada a través de nuestros formularios es confidencial y no se compartirá con terceros. Para más detalles, consulte nuestra Política de Privacidad.</p>
+      </div>
+    </div>
+  </dialog>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container footer__inner">
+      <div class="footer__copy">
+        <p>Suplidora MOSS © 2026. Realza tu belleza natural.</p>
+      </div>
+      <div class="footer__social" style="gap: 1.5rem;">
+         <a href="#" onclick="event.preventDefault(); openTermsModal();">Términos y Cond.</a>
+         <a href="#">Privacidad</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
