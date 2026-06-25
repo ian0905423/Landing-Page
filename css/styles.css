@@ -1356,3 +1356,29 @@ body.dark-mode .btn-outline:hover {
   clip: rect(0, 0, 0, 0);
   border: 0;
 }
+
+
+/* ============================================================
+   15. BREAKPOINT TABLET — 1024px
+   Ajustes intermedios entre escritorio (>1024px) y móvil (≤768px)
+   ============================================================ */
+@media (max-width: 1024px) {
+
+  /* Navbar: reducir espacio entre enlaces para que quepan en tablet */
+  .navbar__links { gap: var(--space-sm); }
+
+  /* Hero: menos padding vertical, columna de texto más compacta */
+  .hero__grid   { padding: var(--space-xl) 0; }
+  .hero__content { max-width: 420px; }
+
+  /* Catálogo: máximo 2 columnas en tablet */
+  .catalog-grid { grid-template-columns: repeat(2, 1fr); }
+
+  /* Beneficios: 2 columnas × 2 filas en lugar de 4 en fila */
+  .benefits-row { flex-wrap: wrap; }
+  .benefit-card { flex: 1 1 calc(50% - var(--space-md)); }
+
+  /* Contacto: reducir el gap y el ancho fijo del panel izquierdo */
+  .contact-layout { gap: var(--space-lg); }
+  .contact-info   { flex: 0 0 240px; }
+}
