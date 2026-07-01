@@ -405,3 +405,123 @@
     }
   });
 })();
+
+/**
+ * ============================================================
+ * 6. ACCESIBILIDAD (A11Y)
+ * Lógica para el widget flotante y almacenamiento de preferencias.
+ * ============================================================
+ */
+document.addEventListener('DOMContentLoaded', function() {
+  const toggleBtn = document.getElementById('a11yToggle');
+  const panel = document.getElementById('a11yMenu');
+  const closeBtn = document.getElementById('a11yClose');
+
+  if (!toggleBtn || !panel) return;
+
+  // --- Abrir / Cerrar menú ---
+  function togglePanel() {
+    const isHidden = panel.getAttribute('aria-hidden') === 'true';
+    panel.setAttribute('aria-hidden', !isHidden);
+    toggleBtn.setAttribute('aria-expanded', !isHidden);
+  }
+
+  toggleBtn.addEventListener('click', togglePanel);
+  if(closeBtn) closeBtn.addEventListener('click', togglePanel);
+
+  // Cerrar al hacer clic fuera del panel
+  document.addEventListener('click', function(e) {
+    if (!panel.contains(e.target) && !toggleBtn.contains(e.target) && panel.getAttribute('aria-hidden') === 'false') {
+      togglePanel();
+    }
+  });
+
+  // --- Configuración y LocalStorage ---
+  const htmlElement = document.documentElement; // Usamos <html> para las clases
+  const defaultSettings = {
+    textSize: 16, // px base
+    grayscale: false,
+    highlightLinks: false,
+    readableFont: false,
+    pauseAnimations: false
+  };
+
+  let a11ySettings = JSON.parse(localStorage.getItem('mossA11y')) || defaultSettings;
+
+  // Elementos DOM de Opciones
+  const btnDecrease = document.getElementById('a11yTextDecrease');
+  const btnReset = document.getElementById('a11yTextReset');
+  const btnIncrease = document.getElementById('a11yTextIncrease');
+  
+  const chkGrayscale = document.getElementById('a11yGrayscale');
+  const chkHighlight = document.getElementById('a11yHighlightLinks');
+  const chkReadable = document.getElementById('a11yReadableFont');
+  const chkPause = document.getElementById('a11yPauseAnimations');
+
+  function saveSettings() {
+    localStorage.setItem('mossA11y', JSON.stringify(a11ySettings));
+    applySettings();
+  }
+
+  function applySettings() {
+    // Texto
+    htmlElement.style.fontSize = `${a11ySettings.textSize}px`;
+    
+    // Toggles (Clases CSS)
+    htmlElement.classList.toggle('a11y-grayscale', a11ySettings.grayscale);
+    htmlElement.classList.toggle('a11y-highlight-links', a11ySettings.highlightLinks);
+    htmlElement.classList.toggle('a11y-readable-font', a11ySettings.readableFont);
+    htmlElement.classList.toggle('a11y-pause-animations', a11ySettings.pauseAnimations);
+
+    // Actualizar UI para reflejar estado actual (por si se recarga)
+    if(chkGrayscale) chkGrayscale.checked = a11ySettings.grayscale;
+    if(chkHighlight) chkHighlight.checked = a11ySettings.highlightLinks;
+    if(chkReadable) chkReadable.checked = a11ySettings.readableFont;
+    if(chkPause) chkPause.checked = a11ySettings.pauseAnimations;
+  }
+
+  // --- Eventos Tamaño de Texto ---
+  if (btnDecrease && btnReset && btnIncrease) {
+    btnDecrease.addEventListener('click', () => {
+      if (a11ySettings.textSize > 12) a11ySettings.textSize -= 2;
+      saveSettings();
+    });
+    btnReset.addEventListener('click', () => {
+      a11ySettings.textSize = 16;
+      saveSettings();
+    });
+    btnIncrease.addEventListener('click', () => {
+      if (a11ySettings.textSize < 24) a11ySettings.textSize += 2;
+      saveSettings();
+    });
+  }
+
+  // --- Eventos Toggles ---
+  if (chkGrayscale) {
+    chkGrayscale.addEventListener('change', (e) => {
+      a11ySettings.grayscale = e.target.checked;
+      saveSettings();
+    });
+  }
+  if (chkHighlight) {
+    chkHighlight.addEventListener('change', (e) => {
+      a11ySettings.highlightLinks = e.target.checked;
+      saveSettings();
+    });
+  }
+  if (chkReadable) {
+    chkReadable.addEventListener('change', (e) => {
+      a11ySettings.readableFont = e.target.checked;
+      saveSettings();
+    });
+  }
+  if (chkPause) {
+    chkPause.addEventListener('change', (e) => {
+      a11ySettings.pauseAnimations = e.target.checked;
+      saveSettings();
+    });
+  }
+
+  // Inicializar al cargar la página
+  applySettings();
+});
